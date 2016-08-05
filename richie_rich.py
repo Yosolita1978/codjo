@@ -1,30 +1,25 @@
-def make_palindrome(number_string, k):
+def make_palindrome(s, k):
+    new_s = ""
+    x = 0
+    y = len(s)-1
+    count = 0
 
-    numbers = list(number_string)
-    pointer_1 = 0
-    pointer_2 = len(number_string) - 1
-    counter = 0
-
-    for i in range(len(number_string)):
-        if numbers[pointer_1] != numbers[pointer_2]:
-            counter += 1
-            if numbers[pointer_2] > numbers[pointer_1]:
-                # 12345
-                numbers[pointer_1] = numbers[pointer_2]
-                # 52345
-            else:
-                # 54321
-                numbers[pointer_2] = numbers[pointer_1]
-                # 54325
-        if counter > k:
-            return -1
-            break
-        pointer_1 += 1
-        pointer_2 -= 1
-
-    # maximizing (adding 9's)
-    #number_to_maximize = k - counter
+    while x < y:
+        new_s = new_s + s[x]
 
 
-    # joining & printing the palindrome
-    return ''.join(numbers)
+        if s[x] != s[y]:
+            count = count + 1
+
+            if s[x] < s[y]:
+                new_s = new_s.replace(s[x],s[y])
+            
+                    
+
+        x = x + 1
+        y = y - 1
+
+    if count > k:
+        return -1
+    
+    return new_s + "".join(reversed(new_s))
